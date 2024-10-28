@@ -1,0 +1,49 @@
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 20px;
+    border: 3px solid;
+    height: 50vh;
+}
+#text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cartLabel{
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    
+}
+
+
+
+#searchDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+    column-gap: 20px;
+    flex-wrap: wrap;
+}
+#cartContainer{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    column-gap: 15px;
+    border: 3px solid;
+    min-height: 30vh;
+
+}
