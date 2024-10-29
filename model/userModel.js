@@ -24,12 +24,21 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    
+
+    cart:{
+        
+
+        item:{
+            type: String
+        },
+        price:{
+            type: Number
+        }
+    }
 
 
 });
 
 const UserShits = mongoose.model('user', userSchema)
-
 
 module.exports = UserShits;

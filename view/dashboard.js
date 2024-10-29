@@ -5,6 +5,7 @@ const cartContainer = document.getElementById('cartContainer')
 const cartButton = document.getElementById('cartButton')
 
 
+
 let prodHolder = []
 let cart = []
 
@@ -68,39 +69,40 @@ back.onclick =() =>{
   })
 }
 
+//add to cart
 
 container.addEventListener('click', function (e) {
   if (e.target.classList.contains('addCart')) {
     let productCard = e.target.closest('.productCard');
-    
+
     const img = productCard.querySelector('.image').src;
     const item = productCard.querySelector('.item').textContent;
     const price = productCard.querySelector('.price').textContent;
-    const quantity = productCard.querySelector('.quantity').textContent;
 
-    cart.push({
-      imageUrl: img,
-      item: item,
-      price: price,
-      quantity: quantity,
-    });
-    cart.forEach((cartItem)=>{
-      
-      cartContainer.innerHTML += `<div class="productCart" style="border: 2px solid black; width: 150px; height: 220px;  ">
-                      <img class="image" src=${cartItem.imageUrl} alt="fruit image" height=100px > <br>
+     
+    if (!cart.some(cartItem => cartItem.item === item)) {
+      const cartItem = { imageUrl: img, item: item, price: price };
+      cart.push(cartItem);
+      console.log(cart)
+      cartContainer.innerHTML += `<div class="productCart" style="border: 2px solid black; width: 150px; height: 220px;">
+                      <img class="image" src=${cartItem.imageUrl} alt="product image" height=100px > <br>
                       <strong><span class="item"> ${cartItem.item}</span></strong><br>
                       Price:<span class="price"> ${cartItem.price}</span> Php <br> 
-                      <br><button  class="remove" >Remove</button> <button  class="order" >Order</button></div><br>`
-      cart.pop()
-      
-    })
-
-}
+                      <br><button class="remove">Remove</button> <button class="order">Order</button></div><br>`;
+    }
+  }
+});
 
 cartContainer.addEventListener('click', function (e) {
-if (e.target.classList.contains('remove')) {
-  let removeCard = e.target.closest('.productCart'); 
-  removeCard.remove(); 
-    }
-  })
-})
+  if (e.target.classList.contains('remove')) {
+    let removeCard = e.target.closest('.productCart'); 
+  
+    
+    const itemSelected = removeCard.querySelector('.item').textContent;
+   
+    cart.pop({item:itemSelected})
+    removeCard.remove()
+    console.log(cart)
+    
+      }
+    })
