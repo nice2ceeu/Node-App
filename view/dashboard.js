@@ -79,16 +79,34 @@ container.addEventListener('click', function (e) {
     const item = productCard.querySelector('.item').textContent;
     const price = productCard.querySelector('.price').textContent;
 
-     
+  
+    let quantity = 0;
+
     if (!cart.some(cartItem => cartItem.item === item)) {
-      const cartItem = { imageUrl: img, item: item, price: price };
+      
+      const cartItem = { imageUrl: img, item: item, price: price, quantity: 1 };
       cart.push(cartItem);
-      console.log(cart)
+      console.log(cart);
       cartContainer.innerHTML += `<div class="productCart" style="border: 2px solid black; width: 150px; height: 220px;">
-                      <img class="image" src=${cartItem.imageUrl} alt="product image" height=100px > <br>
-                      <strong><span class="item"> ${cartItem.item}</span></strong><br>
-                      Price:<span class="price"> ${cartItem.price}</span> Php <br> 
-                      <br><button class="remove">Remove</button> <button class="order">Order</button></div><br>`;
+          <img class="image" src="${cartItem.imageUrl}" alt="product image" height="100px"> <br>
+          <strong><span class="item">${cartItem.item}</span></strong><br>
+          Price: <span class="price">${cartItem.price}</span> Php <br> 
+          Quantity: <span class="quantity">${cartItem.quantity}</span><br>
+          <br><button class="remove">Remove</button> <button class="order">Order</button></div><br>`;
+    } else {
+      
+      const existingCartItem = cart.find(cartItem => cartItem.item === item);
+      existingCartItem.quantity += 1; 
+
+      
+      const productCartDivs = cartContainer.querySelectorAll('.productCart');
+      productCartDivs.forEach(div => {
+          const itemName = div.querySelector('.item').textContent;
+          if (itemName === existingCartItem.item) {
+              let quantitySpan = div.querySelector('.quantity');
+              quantitySpan.textContent = existingCartItem.quantity; 
+          }
+      });
     }
   }
 });
@@ -96,8 +114,6 @@ container.addEventListener('click', function (e) {
 cartContainer.addEventListener('click', function (e) {
   if (e.target.classList.contains('remove')) {
     let removeCard = e.target.closest('.productCart'); 
-  
-    
     const itemSelected = removeCard.querySelector('.item').textContent;
    
     cart.pop({item:itemSelected})
