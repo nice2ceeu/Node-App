@@ -3,11 +3,11 @@ const back = document.getElementById('back')
 const searchBtn = document.getElementById('searchBtn')
 const cartContainer = document.getElementById('cartContainer')
 const cartButton = document.getElementById('cartButton')
-
-
-
+let click = 1
 let prodHolder = []
 let cart = []
+
+document.getElementById('cartContainer').style.visibility = "hidden";
 
 //display all shits
 fetch("/product/products")
@@ -21,9 +21,9 @@ fetch("/product/products")
                         quantity: item.quantity})
       container.innerHTML += `<div class="productCard" style="border: 2px solid black; width: 150px; height: 220px;  ">
                     <img class="image" src=${item.imageUrl} alt="fruit image" height=100px > <br>
-                    <strong><span class="item"> ${item.item}</span> </strong><br>
-                    Price:<span class="price"> ${item.price}</span> Php <br> 
-                    Quantity:<span class="quantity"> ${item.quantity}</span> Pcs<br>
+                    <strong> <span class="item"> ${item.item}</span> </strong><br>
+                    Price: <span class="price"> ${item.price}</span> Php <br> 
+                    Quantity: <span class="quantity"> ${item.quantity} </span> Pcs<br>
                     <br><button class="addCart" >Add to cart</button></div><br>`;
     })
   )
@@ -114,6 +114,7 @@ container.addEventListener('click', function (e) {
 cartContainer.addEventListener('click', function (e) {
   if (e.target.classList.contains('remove')) {
     let removeCard = e.target.closest('.productCart'); 
+  
     const itemSelected = removeCard.querySelector('.item').textContent;
    
     cart.pop({item:itemSelected})
@@ -122,3 +123,17 @@ cartContainer.addEventListener('click', function (e) {
     
       }
     })
+cartButton.onclick = ()=> {
+  
+  
+
+  if(click % 2 == 0){
+    
+  document.getElementById('cartContainer').style.visibility = "hidden";
+    click += 1
+  }else{
+    
+  document.getElementById('cartContainer').style.visibility = "visible";
+  click += 1
+  }
+}

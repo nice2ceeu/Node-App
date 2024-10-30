@@ -26,12 +26,17 @@ const userSchema = new mongoose.Schema({
     },
 
     cart:{
-        
-
+        imageUrl: {
+            type: String,
+            required:false
+        },
         item:{
             type: String
         },
         price:{
+            type: Number
+        },
+        quantity:{
             type: Number
         }
     }

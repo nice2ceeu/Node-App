@@ -12,9 +12,10 @@ router.get('/', getUser);
 
 router.post('/login', getOneUser);
 
+router.put('/update/:id', update);
 
 // unused
 router.delete('/delete/:id',deleteUser );
 
-router.put('/update/:id', update);
+
 module.exports = router;

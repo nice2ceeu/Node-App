@@ -30,9 +30,9 @@ const getOneUser = async(req, res)=>{
         }
 
         if(user.email === email && user.password === password){
-            return res.redirect('./dashboard.html')
+            return res.status(200).json(user);
         }else{
-            res.send('Credentials don\'t match')
+            return res.status(401).json({message:'Credentials don\'t match' });
         }
         
     }catch(error){

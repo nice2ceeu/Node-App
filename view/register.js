@@ -1,4 +1,10 @@
 const register = document.getElementById('register')
+const log = document.getElementById('log')
+
+log.onclick =()=>{
+    window.location.href = "index.html";
+}
+
 
 register.onclick = async() => {
 

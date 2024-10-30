@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,4 +24,68 @@
     <script src="register.js"></script>
     
 </body>
+</html> -->
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<link
+			rel="stylesheet"
+			href="login_register.css"
+		/>
+		<title>Register</title>
+	</head>
+	<body>
+		<header>
+			<img src="images/logo.png" />
+			<h1>CITAW</h1>
+		</header>
+		<section class="register_page_layout">
+			<main class="registerContainer">
+				<div class="registerForm">
+					<h1>Register</h1>
+					<input
+                    id="fullName"
+                        required
+						type="text"
+						placeholder="Full name"
+					/>
+                    <input
+                    id="email"
+                    required
+						type="email"
+						placeholder="email"
+					/>
+					<input
+                    id="password"
+                    required
+						type="password"
+						placeholder="Password"
+					/>
+					<input
+                    id="age"
+                    required
+						type="text"
+						placeholder="age"
+					/>
+					
+                        <br>
+					<button class="loginButton" id="log"> Already Have an account </button>
+
+					<button 
+                        class="registerButton" id="register"> Register</button>
+                </div>
+			</main>
+		</section>
+<br><br><br><br>
+		<footer>
+			<p>&copy; 2024 CITAW. All rights reserved.</p>
+		</footer>
+        <script src="register.js"></script>
+	</body>
 </html>

@@ -1,5 +1,5 @@
 const login = document.getElementById('login')
-
+let userData;
 
 
 login.onclick = async()=>{
@@ -19,18 +19,22 @@ login.onclick = async()=>{
             body: JSON.stringify(data),
         });
 
-        if (response.redirected) {
+        if (response.ok) {
+            userData = await response.json();
             
+           
             return window.location.href = 'dashboard.html';
-        }
+        }if(!response.ok){
 
         const message = await response.text();
         alert(message)
+    }
     } catch (error) {
         
         alert(error);
     }
-};
-    
-    
+}; 
+
+
+
 
