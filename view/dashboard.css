@@ -34,7 +34,7 @@ body {
 /* PRODUCT CONTAINER  */
 #container {
 	grid-column: 1;
-	grid-row: ;
+	grid-row: 1;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	/* grid-template-rows: repeat(auto-fit, minmax(650px, 1fr)); */
