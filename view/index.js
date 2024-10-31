@@ -21,8 +21,8 @@ login.onclick = async()=>{
 
         if (response.ok) {
             userData = await response.json();
-            
-           
+            localStorage.setItem('userData', JSON.stringify(userData));
+            console.log(userData)
             return window.location.href = 'dashboard.html';
         }if(!response.ok){
 
@@ -34,7 +34,4 @@ login.onclick = async()=>{
         alert(error);
     }
 }; 
-
-
-
 

@@ -41,17 +41,42 @@ const getOneUser = async(req, res)=>{
     }
 }
 //for register
-const createUser = async(req, res)=>{
-    try{
-        const user = await UserShits.create(req.body)
-        res.status(200)
-        res.send("Succesfully Registered")
+// const createUser = async(req, res)=>{
+//     try{
+//         const {email} = req.params
+//         const exist = await UserShits.findOne({email: email})
+//         if(exist){
+            
+//             return res.status(409).send("Email already exists");
+//         }else{
+//             const user = await UserShits.create(req.body)
+//             return res.status(200).send("Successfully Registered");
+//         }
+        
 
-    }catch(error){
-        res.status(500)
-        res.send("Must fill all fields")
+//     }catch(error){
+//         return res.status(500).send("Must fill all fields")
+//     }
+// }
+const createUser = async (req, res) => {
+    try {
+      const { email } = req.params;
+      
+      // Check if user already exists
+      const exist = await UserShits.findOne({ email: email });
+     
+      // Create new user
+      if(!exist){
+      const user = await UserShits.create(req.body);
+      
+      return res.status(200).send("Successfully Registered");
     }
-}
+  
+    } catch (error) {
+      console.error(error); // Log the error for debugging
+      return res.status(500).send("Email already exist");
+    }
+  };
 
 //deletion of acc. for admin shit
 const deleteUser = async(req, res)=>{
