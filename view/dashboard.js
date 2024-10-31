@@ -3,11 +3,22 @@ const back = document.getElementById('back')
 const searchBtn = document.getElementById('searchBtn')
 const cartContainer = document.getElementById('cartContainer')
 const cartButton = document.getElementById('cartButton')
+
+const userDataString = sessionStorage.getItem('userData');
+
+      if (userDataString) {
+          const userData = JSON.parse(userDataString); 
+          console.log("Retrieved User Data:", userData);
+      } else {
+          console.log("No userData found in session storage");
+      }
+
 let click = 1
 let prodHolder = []
 let cart = []
 
-document.getElementById('cartContainer').style.visibility = "hidden";
+document.getElementById('cartContainer').style.display = "none";
+
 
 //display all shits
 function display(){
@@ -52,7 +63,7 @@ searchBtn.onclick =() => {
                     <button class="addCart">Add to cart</button></div><br>`;
       }
   }
-  
+
 }
 //display shits again
 back.onclick =() =>{
@@ -117,14 +128,13 @@ cartContainer.addEventListener('click', function (e) {
 cartButton.onclick = ()=> {
   if(click % 2 == 0){
     
-  document.getElementById('cartContainer').style.visibility = "hidden";
+  document.getElementById('cartContainer').style.display = "none";
   click += 1
   }else{
-  document.getElementById('cartContainer').style.visibility = "visible";
+  document.getElementById('cartContainer').style.display = "block";
   click += 1
   }
 }
-
 
 //order route
 cartContainer.addEventListener('click', function (e) {
@@ -139,6 +149,3 @@ cartContainer.addEventListener('click', function (e) {
     order.remove()
       }
     })
-
-   
-  
