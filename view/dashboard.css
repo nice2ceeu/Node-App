@@ -1,73 +1,188 @@
-
-#all{
-    display: flex;
-    justify-content: center;
-    column-gap: 20px;
-    border: 3px solid;
-    
-}
-#container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: flex-start;
-    flex-wrap: wrap;
-
-    row-gap: 20px;
-    column-gap: 20px;
-    border: 3px solid;
-   
-    height: 600px;
-    width: 500px;
-    padding: scroll;
-}
-#text{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
-#cartLabel{
-    
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    
-    
+:root {
+	--primary-font: Arial;
+	--primary-color: rgba(211, 254, 196, 0.344);
+	--secondary-color: rgba(85, 222, 10, 0.392);
+	--tertiary-color: #ffffffab;
+	--accent-color: rgb(160, 249, 148);
+	--Bg-product: rgba(128, 191, 105, 0.302);
+	--shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
+	--input-color: #e5e5e5;
 }
 
-#searchDiv{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: flex-start;
-    column-gap: 20px;
-    flex-wrap: wrap;
-}
-#cartContainer{
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: flex-start;
-    flex-wrap: wrap;
-
-    row-gap: 20px;
-    column-gap: 20px;
-    border: 3px solid;
-    
-    height: 500px;
-    width: 500px;
-
-
-}
-.navBar{
-    border: 3px solid;
-    display: flex;
-    justify-content: center;
-    column-gap: 10px;
+body {
+	position: relative;
+	font: var(--primary-font);
+	background: var(--primary-color);
+	height: 50dvh;
 }
 
-h1 {
-  font-size: 3dvw;
+.page_layout {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 75dvh;
+	padding-inline: 2rem;
+	margin-inline: auto;
+	overflow: scroll;
+}
+
+/* PRODUCT CONTAINER  */
+#container {
+	grid-column: 1;
+	grid-row: 1;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	/* grid-template-rows: repeat(auto-fit, minmax(650px, 1fr)); */
+	gap: 10px;
+}
+/* product items */
+.productCard {
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	height: 650px;
+	gap: 5px;
+	border-radius: 20px;
+	background: var(--tertiary-color);
+	overflow: hidden;
+}
+
+/* IMAGE PROUDUCT */
+.productCard > img {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	border-radius: 10px 10px 5px 5px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+.productCard > span {
+	padding: 5px 10px 5px 10px;
+}
+.productCard > span:nth-of-type(1) {
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+hr {
+	all: unset;
+	width: 100%;
+	height: 1px;
+	background-color: #8080804c;
+}
+.productCard > span:nth-of-type(2) {
+	font-size: 2.5rem;
+	font-weight: 650;
+}
+.productCard > span:nth-of-type(3) {
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+.addCart {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50px;
+	width: 100%;
+	border: none;
+	text-decoration: none;
+	border-radius: 5px 5px 20px 20px;
+	background: var(--accent-color);
+	color: var(--text-color);
+	box-shadow: var(--shadow);
+}
+
+#cartContainer {
+	grid-column: 1;
+	grid-row: 1;
+	height: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(178, 200, 175, 0.806);
+	overflow-y: scroll;
+	z-index: 2;
+}
+
+#text {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#cartLabel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#searchDiv {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: flex-start;
+	column-gap: 20px;
+	flex-wrap: wrap;
+}
+.navBar {
+	grid-row: 1;
+	position: sticky;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	top: 0;
+	gap: 10px;
+	padding: 10px;
+	width: 100dvw;
+	background: var(--secondary-color);
+	box-shadow: var(--shadow);
+	z-index: 2;
+}
+
+.navBar > button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50px;
+	width: 50%;
+	border: none;
+	text-decoration: none;
+	border-radius: 10px;
+	background: var(--tertiary-color);
+	color: var(--text-color);
+	box-shadow: var(--shadow);
+}
+.navBar > input {
+	padding-left: 10px;
+	height: 50px;
+	width: 50%;
+	border: none;
+	outline: none;
+	text-decoration: none;
+	border-radius: 10px;
+	background: var(--tertiary-color);
+	color: var(--text-color);
+}
+
+footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	bottom: 0;
+	height: 100px;
+	width: 100dvw;
+	background: var(--secondary-color);
+	box-shadow: var(--shadow);
+}
+
+/* footer > p = pTag (for the footer text) */
+footer > p {
+	font-size: 2.5vw;
+	color: white;
 }
