@@ -48,7 +48,6 @@ body {
 	justify-content: flex-start;
 	align-items: center;
 	flex-wrap: wrap;
-	height: 650px;
 	gap: 5px;
 	height: 500px;
 	width: 300px;
@@ -305,5 +304,3 @@ footer > p {
 	font-size: 2.5vw;
 	color: white;
 }
-
-
