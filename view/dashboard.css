@@ -29,7 +29,7 @@ body {
 	grid-template-rows: 75dvh;
 	padding-inline: 2rem;
 	margin-inline: auto;
-	overflow: scroll;
+	
 }
 
 /* PRODUCT CONTAINER  */
@@ -128,7 +128,7 @@ hr {
 	top: 70px;
 	right: 20px;
 	/* POSTION OF CONTAINER */
-	width: 50%;
+	width: 35%;
 	height: 100%;
 	padding: 10px;
 	z-index: 10;
@@ -179,9 +179,10 @@ hr {
 	font-size: 2rem;
 }
 .productCart > span:nth-of-type(2)::before {
-	content: "₱";
+	content: "Total: ₱ ";
 	font-size: 2rem;
 	padding-right: 5px;
+	
 }
 
 .productCart > span:nth-of-type(3) {
@@ -191,7 +192,8 @@ hr {
 	font-size: 1.5rem;
 }
 .productCart > span:nth-of-type(3)::before {
-	content: "Qty";
+	
+	content: "Qty: ";
 	font-size: 1.5rem;
 }
 
@@ -294,7 +296,7 @@ footer {
 	align-items: center;
 	position: fixed;
 	bottom: 0;
-	height: 100px;
+	height: 50px;
 	width: 100dvw;
 	background: var(--secondary-color);
 	box-shadow: var(--shadow);
