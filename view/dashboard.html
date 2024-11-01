@@ -14,22 +14,44 @@
 	</head>
 	<body>
 		<nav class="navBar">
-			<button id="back">Back</button>
+			<button id="userButton">
+				<img src="icons/user.png" />
+			</button>
+
+			<button id="back"><img src="icons/back.png" /></button>
 			<input
 				type="text"
 				id="itemSearch"
 				placeholder="Search Item"
 			/>
-
-			<button id="searchBtn">Search</button><br /><br />
-			<button id="cartButton">Show cart</button>
+			<button id="searchBtn"><img src="icons/search.png" /></button>
+			<button id="cartButton">
+				<img src="icons/cartPic.png" /><span id="Counter">1</span>
+			</button>
 		</nav>
+
+		<!-- 
+		
+		USER BUTTON 
+		
+		-->
+		<div id="userCard">
+			<img src="icons/user.png" />
+			<span id="userName">TourPas Lodi</span>
+			<hr />
+			<span id="userEmail">Nagtrabahosaindia@gmail.com</span>
+			<span id="userAge">30</span>
+			<span id="userId">19928384849100</span>
+			<hr />
+			<button id="logoutButton">Logout</button>
+		</div>
+		<!-- 
+
+MAIN PAGE LAYOUT 
+
+-->
 		<div class="page_layout">
-			
 			<div id="container">
-
-			
-
 				<div class="productCard">
 					<img
 						class="image"
@@ -45,10 +67,11 @@
 					<span class="quantity"> 30</span>
 					<button class="addCart">Add to cart</button>
 				</div>
-
 			</div>
 		</div>
+		<!-- PRODUCT  CART -->
 		<div id="cartContainer">
+			<!-- PRODUCT INSIDE CART -->
 			<div class="productCart">
 				<img
 					class="image"
@@ -149,6 +172,7 @@
 		<footer>
 			<p>&copy; 2024 CITAW. All rights reserved.</p>
 		</footer>
-		<!-- 		<script src="dashboard.js"></script> -->
+		<
+		<script src="dashboard.js"></script>
 	</body>
 </html>
