@@ -4,19 +4,42 @@ const searchBtn = document.getElementById('searchBtn')
 const cartContainer = document.getElementById('cartContainer')
 const cartButton = document.getElementById('cartButton')
 
-const userDataString = sessionStorage.getItem('userData');
+let userData;
 
+const userDataString = sessionStorage.getItem('userData');
       if (userDataString) {
-          const userData = JSON.parse(userDataString); 
+          userData = JSON.parse(userDataString); 
           console.log("Retrieved User Data:", userData);
+          
       } else {
           console.log("No userData found in session storage");
       }
-
 let click = 1
 let prodHolder = []
 let cart = []
 
+console.log(`User ID: ${userData._id}`)
+console.log(`Full Name: ${userData.name}`)
+console.log(`Age: ${userData.age}`)
+if(!userData.cart){
+
+}else{
+userData.cart.forEach((cartOfUser)=>{
+  cart.push({
+    imageUrl:cartOfUser.imageUrl,
+    item:cartOfUser.item,
+    price:cartOfUser.price,
+    quantity:cartOfUser.quantity})
+
+cartContainer.innerHTML += `<div class="productCart" >
+          <img class="image" src="${cartOfUser.imageUrl}" alt="product image" >
+          <span class="item">${cartOfUser.item}</span>
+          <span class="price">${cartOfUser.price}</span>
+          <span class="quantity"> ${cartOfUser.quantity}</span>
+          <button class="remove">Remove</button> <button class="order">Order</button></div>`;
+
+})
+}
 document.getElementById('cartContainer').style.display = "none";
 
 
@@ -31,17 +54,20 @@ fetch("/product/products")
                         item: item.item,
                         price: item.price,
                         quantity: item.quantity})
-      container.innerHTML += `<div class="productCard"  ">
-                    <img class="image" src=${item.imageUrl} alt="product image"> 
-                    <span class="item"> ${item.item}</span> 
-                    Price: <span class="price">${item.price}</span> Php 
-                    Quantity: <span class="quantity">${item.quantity}</span>Pcs
-                    <button class="addCart" >Add to cart</button></div>`;
+      container.innerHTML += `<div class="productCard">
+					<img class="image" src=${item.imageUrl} alt="image"/>
+					<span class="item">${item.item}</span>
+					<hr>
+					<span class="price">${item.price}</span>
+					<span class="quantity"> ${item.quantity}</span>
+					<button class="addCart">Add to cart</button>
+				</div>`
     })
   )
   .catch((error) => console.error("Error:", error));
 }
   display();
+
   //search shits
 searchBtn.onclick =() => {
     let itemSearch = document.getElementById('itemSearch').value
@@ -55,12 +81,15 @@ searchBtn.onclick =() => {
         alert('Can\'t find item')
       }else{
       container.innerHTML=``;
-      container.innerHTML = `<div class="productCard" ">
-                    <img class="image" src=${find.imageUrl} alt="product image" > 
-                    <span class="item"> ${find.item}</span>
-                    Price:<span class="price"> ${find.price}</span> Php  
-                    Quantity:<span class="quantity"> ${find.quantity}</span> Pcs
-                    <button class="addCart">Add to cart</button></div><br>`;
+      container.innerHTML = `<div class="productCard">
+					<img class="image" src=${find.imageUrl} alt="image"/>
+					<span class="item">${find.item}</span>
+					<hr>
+					<span class="price">${find.price}</span>
+					<span class="quantity"> ${find.quantity}</span>
+					<button class="addCart">Add to cart</button>
+				</div>`
+
       }
   }
 
@@ -78,7 +107,7 @@ container.addEventListener('click', function (e) {
     let productCard = e.target.closest('.productCard');
 
     const img = productCard.querySelector('.image').src;
-    const item = productCard.querySelector('.item').textContent;
+    const item = productCard.querySelector('.item').textContent.toLowerCase().trim();
     const price = productCard.querySelector('.price').textContent;
 
     if (!cart.some(cartItem => cartItem.item === item)) {
@@ -89,9 +118,12 @@ container.addEventListener('click', function (e) {
       cartContainer.innerHTML += `<div class="productCart" >
           <img class="image" src="${cartItem.imageUrl}" alt="product image" >
           <span class="item">${cartItem.item}</span>
-          Quantity: <span class="quantity">${cartItem.quantity}</span>
-          Total Amount: <span class="price">${cartItem.price}</span> Php
+          <span class="price">${cartItem.price}</span>
+          <span class="quantity"> ${cartItem.quantity}</span>
           <button class="remove">Remove</button> <button class="order">Order</button></div>`;
+
+          //adding item request code here
+
     } else {
       
       const existingCartItem = cart.find(cartItem => cartItem.item === item);
@@ -105,14 +137,17 @@ container.addEventListener('click', function (e) {
           if (itemName === existingCartItem.item) {
               let quantitySpan = div.querySelector('.quantity');
               let priceSpan = div.querySelector('.price');
+              
               quantitySpan.textContent = existingCartItem.quantity; 
               priceSpan.textContent = total
           }
       });
+
+      //updating quantity request code here
     }
   }
 });
-
+//removing shit
 cartContainer.addEventListener('click', function (e) {
   if (e.target.classList.contains('remove')) {
     let removeCard = e.target.closest('.productCart'); 
@@ -122,6 +157,8 @@ cartContainer.addEventListener('click', function (e) {
     cart.pop({item:itemSelected})
     removeCard.remove()
     console.log(cart)
+
+    //removing item request code here
       }
     })
 
@@ -135,7 +172,6 @@ cartButton.onclick = ()=> {
   click += 1
   }
 }
-
 //order route
 cartContainer.addEventListener('click', function (e) {
   if (e.target.classList.contains('order')) {
