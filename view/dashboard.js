@@ -8,6 +8,7 @@ const userButton = document.getElementById('userButton')
 let counter = document.getElementById('counter')
 
 
+
 let userData;
 let profile;
 
@@ -38,24 +39,36 @@ try {
         profile = await response.json();
         // let profilePik = document.getElementById('profilePik')
         // profilePik.innerHTML = `<img src=${profile.picture}>`
-        let userName = document.getElementById('userName')
-        let userEmail = document.getElementById('userEmail')
-        let userAge = document.getElementById('userAge')
-        let userId = document.getElementById('userId')
-        userName.textContent =profile.name
-        userEmail.textContent =profile.email
-        userAge.textContent =profile.age
-        userId.textContent =profile._id
+        // let userName = document.getElementById('userName')
+        // let userEmail = document.getElementById('userEmail')
+        // let userAge = document.getElementById('userAge')
+        // let userId = document.getElementById('userId')
+        // userName.textContent =profile.name
+        // userEmail.textContent =profile.email
+        // userAge.textContent =profile.age
+        // userId.textContent =profile._id
+        userButton.innerHTML =`<button id="userButton">
+				<img src=${profile.picture}>
+				
+			</button>`
+        userCard.innerHTML =`<div class="userCard">
+        <img src="${profile.picture}">
+			<span id="userName">${profile.name}</span><br>
+			<hr>
+			<span id="userEmail">${profile.email}</span><br>
+			<span id="userAge">${profile.age}</span><br>
+			<span id="userId">${profile._id}</span>
+			<hr>
+      <button id="logoutButton">Logout</button></div>
+			`;
+      const logoutButton = document.getElementById('logoutButton')
 
-      //   userCard.innerHTML =`<img src="icons/user.png">
-			// <span id="userName">${profile.name}</span><br>
-			// <hr>
-			// <span id="userEmail">${profile.email}</span><br>
-			// <span id="userAge">${profile.age}</span><br>
-			// <span id="userId">${profile._id}</span>
-			// <hr>
-			// `;
+        //logout and clear infos
+logoutButton.onclick = ()=> {
 
+  sessionStorage.clear
+  window.location.href = "index.html"
+}
         profile.cart.forEach((cartOfUser)=>{
           cart.push({
             imageUrl:cartOfUser.imageUrl,
@@ -87,7 +100,7 @@ try {
 get();
 
 
-const logoutButton = document.getElementById('logoutButton')
+
 let cartClick = 1
 let profileClick = 1
 let prodHolder = []
@@ -397,12 +410,7 @@ cartContainer.addEventListener('click',async function (e) {
       }
     })
 
-    //logout and clear infos
-logoutButton.onclick = ()=> {
-
-      sessionStorage.clear
-      window.location.href = "index.html"
-}
+  
 
 
 
