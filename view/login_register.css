@@ -161,7 +161,8 @@ body {
 	align-items: center;
 	border-radius: 20px;
 	background: var(--tertiary-color);
-	box-shadow: var(--shadow);
+	box-shadow: var(--shadow); 
+	
 }
 
 /* registerForm = formTag (for the registration form containing inputs and buttons) */
