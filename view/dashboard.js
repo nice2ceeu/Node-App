@@ -37,12 +37,12 @@ try {
 
     if (response.ok) {
         profile = await response.json();
+        
+        let imageExist = profile.picture ? profile.picture : "icons/user.png";
         userButton.innerHTML =`<button id="userButton">
-				<img src=${profile.picture}>
-				
-			</button>`
+        <img src=${imageExist}></button>`	
         userCard.innerHTML =`<div class="userCard">
-        <img src="${profile.picture}">
+        <img src=${imageExist} alt="Pic">
 			<span id="userName">${profile.name}</span><br>
 			<hr>
 			<span id="userEmail">${profile.email}</span><br>
@@ -51,6 +51,10 @@ try {
 			<hr>
       <button id="logoutButton">Logout</button></div>
 			`;
+
+      
+      
+    
       const logoutButton = document.getElementById('logoutButton')
 
         //logout and clear infos
