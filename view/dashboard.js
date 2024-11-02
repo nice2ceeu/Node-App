@@ -37,16 +37,6 @@ try {
 
     if (response.ok) {
         profile = await response.json();
-        // let profilePik = document.getElementById('profilePik')
-        // profilePik.innerHTML = `<img src=${profile.picture}>`
-        // let userName = document.getElementById('userName')
-        // let userEmail = document.getElementById('userEmail')
-        // let userAge = document.getElementById('userAge')
-        // let userId = document.getElementById('userId')
-        // userName.textContent =profile.name
-        // userEmail.textContent =profile.email
-        // userAge.textContent =profile.age
-        // userId.textContent =profile._id
         userButton.innerHTML =`<button id="userButton">
 				<img src=${profile.picture}>
 				
