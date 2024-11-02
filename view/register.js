@@ -14,6 +14,7 @@ register.onclick = async() => {
     const age = document.getElementById('age').value
 
         const data = {
+        picture:'',
         name: fullName,
         email: email,
         password: password,
