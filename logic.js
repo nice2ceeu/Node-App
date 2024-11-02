@@ -3,6 +3,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const UserRoute = require('./Route/userRoute');
 const ProductRoute = require('./Route/productRoute');
+const UserShits = require('./model/userModel');
 const app = express()
 
 
@@ -29,8 +30,6 @@ app.post('/', (req, res) => {
 app.post('/dashboard.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'view', 'dashboard.html'));
 });
-
-
 
 
 app.use('/user',UserRoute)

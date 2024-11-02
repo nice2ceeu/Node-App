@@ -10,6 +10,7 @@ login.onclick = async()=>{
         email: email,
         password: password
     }
+    
     try {
         const response = await fetch('/user/login', {
             method: 'POST',

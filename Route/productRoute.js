@@ -14,6 +14,6 @@ prodRouter.get('/search', getOneProd);
 // unused
 prodRouter.delete('/:id',deleteProd );
 
-prodRouter.put('/:id', updateProd);
+prodRouter.put('/updateProd', updateProd);
 
 module.exports = prodRouter;

@@ -3,45 +3,106 @@ const back = document.getElementById('back')
 const searchBtn = document.getElementById('searchBtn')
 const cartContainer = document.getElementById('cartContainer')
 const cartButton = document.getElementById('cartButton')
+const userCard = document.getElementById('userCard')
+const userButton = document.getElementById('userButton')
+let counter = document.getElementById('counter')
+
 
 let userData;
+let profile;
 
+//retrieving static infos from login module
 const userDataString = sessionStorage.getItem('userData');
-      if (userDataString) {
-          userData = JSON.parse(userDataString); 
-          console.log("Retrieved User Data:", userData);
-          
-      } else {
-          console.log("No userData found in session storage");
-      }
-let click = 1
+  if (userDataString) {
+    userData = JSON.parse(userDataString); 
+  } else {
+   window.location.href = 'index.html'
+}
+
+//func to get user's shits
+async function get(){
+  const data = {
+    email: userData.email
+}
+
+try {
+    const response = await fetch('/user/logged', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+        profile = await response.json();
+        // let profilePik = document.getElementById('profilePik')
+        // profilePik.innerHTML = `<img src=${profile.picture}>`
+        let userName = document.getElementById('userName')
+        let userEmail = document.getElementById('userEmail')
+        let userAge = document.getElementById('userAge')
+        let userId = document.getElementById('userId')
+        userName.textContent =profile.name
+        userEmail.textContent =profile.email
+        userAge.textContent =profile.age
+        userId.textContent =profile._id
+
+      //   userCard.innerHTML =`<img src="icons/user.png">
+			// <span id="userName">${profile.name}</span><br>
+			// <hr>
+			// <span id="userEmail">${profile.email}</span><br>
+			// <span id="userAge">${profile.age}</span><br>
+			// <span id="userId">${profile._id}</span>
+			// <hr>
+			// `;
+
+        profile.cart.forEach((cartOfUser)=>{
+          cart.push({
+            imageUrl:cartOfUser.imageUrl,
+            item:cartOfUser.item,
+            price:cartOfUser.price,
+            quantity:cartOfUser.quantity})
+        
+        cartContainer.innerHTML += `<div class="productCart" >
+                  <img class="image" src="${cartOfUser.imageUrl}" alt="product image" >
+                  <span class="item">${cartOfUser.item}</span>
+                  <span class="price">${cartOfUser.price}</span>
+                  <span class="quantity">${cartOfUser.quantity}</span>
+                  <button class="remove">Remove</button> <button class="order">Order</button></div>`;
+        
+            let counts = Object.keys(cart).length
+            counter.textContent = counts
+        
+        })
+
+    }if(!response.ok){
+    const message = await response.text();
+    alert(message)
+}
+} catch (error) {
+    alert(error);
+}
+}
+//fetching user's cart and info
+get();
+
+
+const logoutButton = document.getElementById('logoutButton')
+let cartClick = 1
+let profileClick = 1
 let prodHolder = []
 let cart = []
 
-console.log(`User ID: ${userData._id}`)
-console.log(`Full Name: ${userData.name}`)
-console.log(`Age: ${userData.age}`)
+
 if(!userData.cart){
-
+    let cntr = Object.keys(cart).length
+    counter.textContent = cntr
 }else{
-userData.cart.forEach((cartOfUser)=>{
-  cart.push({
-    imageUrl:cartOfUser.imageUrl,
-    item:cartOfUser.item,
-    price:cartOfUser.price,
-    quantity:cartOfUser.quantity})
-
-cartContainer.innerHTML += `<div class="productCart" >
-          <img class="image" src="${cartOfUser.imageUrl}" alt="product image" >
-          <span class="item">${cartOfUser.item}</span>
-          <span class="price">${cartOfUser.price}</span>
-          <span class="quantity"> ${cartOfUser.quantity}</span>
-          <button class="remove">Remove</button> <button class="order">Order</button></div>`;
-
-})
+ 
 }
-document.getElementById('cartContainer').style.display = "none";
-
+//hidden container
+cartContainer.style.display = "none";
+userCard.style.display = "none";
 
 //display all shits
 function display(){
@@ -62,10 +123,13 @@ fetch("/product/products")
 					<span class="quantity"> ${item.quantity}</span>
 					<button class="addCart">Add to cart</button>
 				</div>`
-    })
-  )
+    }
+  
+
+  ))
   .catch((error) => console.error("Error:", error));
 }
+//shit displayed
   display();
 
   //search shits
@@ -94,6 +158,7 @@ searchBtn.onclick =() => {
   }
 
 }
+
 //display shits again
 back.onclick =() =>{
   container.innerHTML=``
@@ -102,7 +167,7 @@ back.onclick =() =>{
 
 //add to cart
 
-container.addEventListener('click', function (e) {
+container.addEventListener('click', async function (e) {
   if (e.target.classList.contains('addCart')) {
     let productCard = e.target.closest('.productCard');
 
@@ -124,7 +189,36 @@ container.addEventListener('click', function (e) {
 
           //adding item request code here
 
-    } else {
+          const data = {
+            userId: userData._id,
+            imageUrl: cartItem.imageUrl,
+            item: cartItem.item,
+            price: cartItem.price,
+            quantity: cartItem.quantity
+        };
+        
+        try {
+            const response = await fetch('/user/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+        
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                throw new Error(errorMessage);
+            }
+        
+            const result = await response.text();
+            alert(result); 
+        } catch (error) {
+            alert(`Error: ${error.message}`);
+        }
+        
+        console.log(cart);
+      } else {
       
       const existingCartItem = cart.find(cartItem => cartItem.item === item);
       existingCartItem.quantity += 1; 
@@ -143,12 +237,42 @@ container.addEventListener('click', function (e) {
           }
       });
 
-      //updating quantity request code here
+      const data = {
+        userId: userData._id,
+        item: existingCartItem.item,
+        price: total,
+        quantity: existingCartItem.quantity
+        
+
+    };
+    
+    try {
+        const response = await fetch('/user/updateCart', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+    
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
+        }
+    
+        const result = await response.text();
+        alert(result); 
+    } catch (error) {
+        alert(`Error: ${error.message}`);
+    }
+      console.log(cart)
     }
   }
+  let cntr = Object.keys(cart).length
+    counter.textContent = cntr
 });
 //removing shit
-cartContainer.addEventListener('click', function (e) {
+cartContainer.addEventListener('click', async function (e) {
   if (e.target.classList.contains('remove')) {
     let removeCard = e.target.closest('.productCart'); 
   
@@ -158,30 +282,127 @@ cartContainer.addEventListener('click', function (e) {
     removeCard.remove()
     console.log(cart)
 
+
+    
     //removing item request code here
+    const data={
+      userId: userData._id,
+      item: itemSelected
+    };
+     try {
+      const response = await fetch('/user/deleteItem', {
+          method: 'DELETE',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+          const errorMessage = await response.text();
+          throw new Error(errorMessage);
       }
+  
+      const result = await response.text();
+      alert(result); 
+  } catch (error) {
+      alert(`Error: ${error.message}`);
+  }
+      }
+
+      let cntr = Object.keys(cart).length
+    counter.textContent = cntr
     })
 
 cartButton.onclick = ()=> {
-  if(click % 2 == 0){
+  if(cartClick % 2 == 0){
     
   document.getElementById('cartContainer').style.display = "none";
-  click += 1
+  cartClick += 1
   }else{
   document.getElementById('cartContainer').style.display = "block";
-  click += 1
+  cartClick += 1
+  }
+}
+userButton.onclick = ()=> {
+  if(profileClick % 2 == 0){
+    
+  document.getElementById('userCard').style.display = "none";
+  profileClick += 1
+  }else{
+  document.getElementById('userCard').style.display = "block";
+  profileClick += 1
   }
 }
 //order route
-cartContainer.addEventListener('click', function (e) {
+cartContainer.addEventListener('click',async function (e) {
   if (e.target.classList.contains('order')) {
     let order = e.target.closest('.productCart'); 
     
     const itemSelected = order.querySelector('.item').textContent;
+    const qtySelected = order.querySelector('.quantity').textContent
+    const numQuantity = Number(qtySelected)
     console.log(`${itemSelected} is ordered biatch`)
 
+    const data = {
+      userId:userData._id,
+      item: itemSelected,
+      quantity: numQuantity
+  };
+    // updating products quantity
+  try {
+      const response = await fetch('/product/updateProd', {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+          const errorMessage = await response.text();
+          throw new Error(errorMessage);
+      }
+        
+      const result = await response.text();
+      alert(result); 
+  } catch (error) {
+      alert(`Error: ${error.message}`);
+  }
+  //removing ordered item from cart
+  try {
+    const response = await fetch('/user/orderItem', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(errorMessage);
+    }
+      
+    const result = await response.text();
+    alert(result); 
+} catch (error) {
+    alert(`Error: ${error.message}`);
+}
+  
     cart.pop({item:itemSelected})
-    console.log(`remaining items in the cart`, cart)
     order.remove()
+    let cntr = Object.keys(cart).length
+    counter.textContent = cntr
       }
     })
+
+    //logout and clear infos
+logoutButton.onclick = ()=> {
+
+      sessionStorage.clear
+      window.location.href = "index.html"
+}
+
+
+

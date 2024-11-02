@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    picture:{
+        type: String,
+    },
     password:{
         type: String,
         required: true
@@ -25,22 +28,23 @@ const userSchema = new mongoose.Schema({
         default: Date.now,
     },
 
-    cart:{
-        imageUrl: {
-            type: String,
-            required:false
-        },
-        item:{
-            type: String
-        },
-        price:{
-            type: Number
-        },
-        quantity:{
-            type: Number
+    cart:[
+            {
+            imageUrl: {
+                type: String,
+                
+            },
+            item:{
+                type: String
+            },
+            price:{
+                type: Number
+            },
+            quantity:{
+                type: Number
+            }
         }
-    }
-
+    ]
 
 });
 

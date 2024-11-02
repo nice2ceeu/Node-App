@@ -25,6 +25,7 @@ const getOneProd = async(req, res)=>{
         res.status(500).json({message: error.message})
     }
 }
+
 //seller side adding products
 const createProd = async(req, res)=>{
     try{
@@ -48,12 +49,26 @@ const deleteProd = async(req, res)=>{
         res.status(500).json({message: error.message})
     }
 }
+
 //updationg info of products
 const updateProd = async(req, res)=>{
+        const {item , quantity} = req.body;
+        
     try{
-        const {id} = req.params;
-        const product = await productsSchema.findByIdAndUpdate(id, req.body)
-        res.status(200).json(product)
+        
+        const product = await productsSchema.findOne({item:item})
+       
+
+        if(!product){
+            res.status(404).json(product)
+        }
+        if(product){
+            product.quantity = product.quantity - quantity
+            await product.save()
+            res.status(200).send(`${product.item} has been order`)
+            
+        }
+        
     }catch(error){
         console.log(error.message)
         res.status(500).json({message: error.message})
