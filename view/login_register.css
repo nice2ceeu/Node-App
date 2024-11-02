@@ -75,7 +75,7 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	width: 80%;
+	width: 30rem;
 	gap: 20px;
 }
 
@@ -88,19 +88,15 @@ body {
 
 /* loginForm > input = inputTag (for the input fields in the login form) */
 .loginForm > input {
-	height: 50px;
+	height: 60px;
 	width: 100%;
+	font-size: 1.3rem;
 	text-align: left;
 	padding-left: 20px;
 	border-radius: 999px;
 	border: none;
 	outline: none;
 	background: var(--input-color);
-}
-
-/* loginForm > input::placeholder = placeholderText (for input placeholders) */
-.loginForm > input::placeholder {
-	font-size: 1.7dvw;
 }
 
 /* loginForm > input:focus::placeholder = placeholderText (for input placeholders on focus) */
@@ -116,6 +112,8 @@ body {
 	justify-content: center;
 	align-items: center;
 	text-decoration: none;
+
+	font-size: 1.2rem;
 	border-radius: 999px;
 	color: var(--text-color);
 	box-shadow: var(--shadow);
@@ -123,17 +121,20 @@ body {
 
 /* loginButton = aTag (for the button to submit the login form) */
 .loginButton {
-	height: 50px;
+	height: 55px;
 	width: 40%;
+	padding: 10px;
 	background: var(--accent-color);
+	border: none;
 }
 
 /* registerButton = aTag (for the button to navigate to the registration page) */
 .registerButton {
 	position: absolute;
 	bottom: 20px;
-	height: 50px;
-	width: 60%;
+	height: 55px;
+	width: 20rem;
+	padding: 10px;
 	border: 1px solid black;
 	background: var(--tertiary-color);
 }
@@ -170,7 +171,7 @@ body {
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	width: 80%;
+	width: 30rem;
 	gap: 20px;
 }
 
@@ -184,6 +185,7 @@ body {
 /* registerForm > input = inputTag (for the input fields in the registration form) */
 .registerForm > input {
 	height: 50px;
+	font-size: 1.3rem;
 	text-align: left;
 	padding-left: 20px;
 	border-radius: 999px;
@@ -216,21 +218,25 @@ body {
 	flex-grow: 1;
 }
 
-/* registerForm > input:nth-of-type(5) = inputTag (for the fifth input in registration form) */
-.registerForm > input:nth-of-type(5) {
-	width: 100%;
-	flex-grow: 1;
-}
-
-/* registerForm > input::placeholder = placeholderText (for input placeholders in registration form) */
-.registerForm > input::placeholder {
-	font-size: 1.7dvw;
-}
-
 /* registerForm > input:focus::placeholder = placeholderText (for input placeholders on focus) */
 .registerForm > input:focus::placeholder {
 	transition: transform 0.3s ease;
 	transform: translateY(-14px);
+}
+.registerForm > button:nth-of-type(1) {
+	width: 18rem;
+	border: none;
+}
+.registerForm > button:nth-of-type(2) {
+	width: 25rem;
+}
+
+/* LOGIN VALIDATION */
+input:required:not(:placeholder-shown) {
+	outline: 2px solid rgba(255, 0, 0, 0.714);
+}
+input:required:valid {
+	outline: 2px solid rgba(94, 216, 44, 0.814);
 }
 
 /* Header Footer login register */
