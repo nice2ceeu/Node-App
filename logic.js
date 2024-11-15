@@ -3,7 +3,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const UserRoute = require('./Route/userRoute');
 const ProductRoute = require('./Route/productRoute');
-const UserShits = require('./model/userModel');
+
 const app = express()
 
 
