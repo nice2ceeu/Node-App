@@ -3,14 +3,16 @@ const path = require('path')
 const mongoose = require('mongoose')
 const UserRoute = require('./Route/userRoute');
 const ProductRoute = require('./Route/productRoute');
+require ('dotenv').config()
+
 
 const app = express()
 
 
+const MONGO_URL = process.env.MONGO_URL;
+const PORT = process.env.PORT || 3001;
 
-const PORT = process.env.PORT || 3000;
-
-mongoose.connect('mongodb://localhost:27017/User')
+mongoose.connect(MONGO_URL)
 .then(() =>{app.listen(PORT,() =>{
     console.log(`to port ${PORT}`);
 }),
