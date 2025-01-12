@@ -22,6 +22,7 @@ console.log('Connected!')},
 )
 
 app.use(express.json())
+
 app.use(express.static('view'))
 
 // app.post('/', (req, res) => {
