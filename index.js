@@ -37,5 +37,5 @@ app.use('/user',UserRoute)
 
 app.use('/product', ProductRoute)
 
-
+module.exports = app;
 
