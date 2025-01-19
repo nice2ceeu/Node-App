@@ -6,27 +6,27 @@ const {getUser ,getOneUser, createUser, deleteUser, update ,addCart, updateCart,
 const router = express();
 
 
-router.post('/node-app-y9kl.onrender.com/register', createUser);
+router.post('/register', createUser);
 
-router.get('/node-app-y9kl.onrender.com/', getUser);
+router.get('/', getUser);
 
-router.post('/node-app-y9kl.onrender.com/login', getOneUser);
+router.post('/login', getOneUser);
 
-router.post('/node-app-y9kl.onrender.com/logged',userLogged);
+router.post('/logged',userLogged);
 
-router.put('/node-app-y9kl.onrender.com/update', update);
+router.put('/update', update);
 
-router.post('/node-app-y9kl.onrender.com/cart',addCart);
+router.post('/cart',addCart);
 
-router.put('/node-app-y9kl.onrender.com/updateCart',updateCart);
+router.put('/updateCart',updateCart);
 
-router.delete('/node-app-y9kl.onrender.com/deleteItem', deleteItem)
+router.delete('/deleteItem', deleteItem)
 
-router.delete('/node-app-y9kl.onrender.com/orderItem', orderItem)
+router.delete('/orderItem', orderItem)
 
 
 // unused
-router.delete('node-app-y9kl.onrender.com/delete/:id',deleteUser );
+router.delete('/delete/:id',deleteUser );
 
 
 module.exports = router;
