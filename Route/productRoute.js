@@ -4,16 +4,16 @@ const {getProds ,getOneProd, createProd, deleteProd, updateProd } = require('../
 
 const prodRouter = express();
 
-prodRouter.post('/create', createProd);
+prodRouter.post('node-app-y9kl.onrender.com/create', createProd);
 
-prodRouter.get('/products', getProds);
+prodRouter.get('node-app-y9kl.onrender.com/products', getProds);
 
-prodRouter.get('/search', getOneProd);
+prodRouter.get('node-app-y9kl.onrender.com/search', getOneProd);
 
 
 // unused
-prodRouter.delete('/:id',deleteProd );
+prodRouter.delete('node-app-y9kl.onrender.com/:id',deleteProd );
 
-prodRouter.put('/updateProd', updateProd);
+prodRouter.put('node-app-y9kl.onrender.com/updateProd', updateProd);
 
 module.exports = prodRouter;
