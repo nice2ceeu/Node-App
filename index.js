@@ -37,5 +37,5 @@ app.use('/node-app-lzb6.onrender.com/user',UserRoute)
 
 app.use('/node-app-lzb6.onrender.com/product', ProductRoute)
 
-module.exports = app;
+
 
