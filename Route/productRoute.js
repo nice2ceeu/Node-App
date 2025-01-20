@@ -4,11 +4,11 @@ const {getProds ,getOneProd, createProd, deleteProd, updateProd } = require('../
 
 const prodRouter = express();
 
-prodRouter.post('/create', createProd);
+prodRouter.post('/node-app-lzb6.onrender.com/create', createProd);
 
-prodRouter.get('/products', getProds);
+prodRouter.get('/node-app-lzb6.onrender.com/products', getProds);
 
-prodRouter.get('/search', getOneProd);
+prodRouter.get('/node-app-lzb6.onrender.com/search', getOneProd);
 
 
 // unused

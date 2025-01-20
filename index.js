@@ -33,9 +33,9 @@ app.use(express.static('view'))
 //     res.sendFile(path.join(__dirname, 'view', 'dashboard.html'));
 // });
 
-app.use('/user',UserRoute)
+app.use('/node-app-lzb6.onrender.com/user',UserRoute)
 
-app.use('/product', ProductRoute)
+app.use('/node-app-lzb6.onrender.com/product', ProductRoute)
 
 module.exports = app;
 

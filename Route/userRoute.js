@@ -6,23 +6,23 @@ const {getUser ,getOneUser, createUser, deleteUser, update ,addCart, updateCart,
 const router = express();
 
 
-router.post('/register', createUser);
+router.post('/node-app-lzb6.onrender.com/register', createUser);
 
-router.get('/', getUser);
+router.get('/node-app-lzb6.onrender.com/', getUser);
 
-router.post('/login', getOneUser);
+router.post('/node-app-lzb6.onrender.com/login', getOneUser);
 
-router.post('/logged',userLogged);
+router.post('/node-app-lzb6.onrender.com/logged',userLogged);
 
-router.put('/update', update);
+router.put('/node-app-lzb6.onrender.com/update', update);
 
-router.post('/cart',addCart);
+router.post('/node-app-lzb6.onrender.com/cart',addCart);
 
-router.put('/updateCart',updateCart);
+router.put('/node-app-lzb6.onrender.com/updateCart',updateCart);
 
-router.delete('/deleteItem', deleteItem)
+router.delete('/node-app-lzb6.onrender.com/deleteItem', deleteItem)
 
-router.delete('/orderItem', orderItem)
+router.delete('/node-app-lzb6.onrender.com/orderItem', orderItem)
 
 
 // unused
