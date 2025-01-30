@@ -14,8 +14,8 @@ app.use(express.static('view'))
 
 
 
-app.get('/', (req, res) => {
-    res.send('API is running...');
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'view', 'index.html'));
 });
 
 const MONGO_URL = process.env.MONGO_URL;
