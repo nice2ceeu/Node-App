@@ -3,9 +3,12 @@ const mongoose = require('mongoose')
 const UserRoute = require('./Route/userRoute');
 const ProductRoute = require('./Route/productRoute');
 require ('dotenv').config()
+const cors = require('cors')
 
 
 const app = express()
+
+app.use(cors())
 
 
 const MONGO_URL = process.env.MONGO_URL;
