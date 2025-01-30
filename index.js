@@ -13,6 +13,11 @@ app.use(express.json())
 app.use(express.static('view'))
 
 
+
+app.get('/', (req, res) => {
+    res.send('API is running...');
+});
+
 const MONGO_URL = process.env.MONGO_URL;
 const PORT = process.env.PORT || 3001;
 
