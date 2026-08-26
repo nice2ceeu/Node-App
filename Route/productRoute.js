@@ -1,7 +1,6 @@
 const express = require('express')
 
 const {getProds ,getOneProd, createProd, deleteProd, updateProd } = require('../controller/productController')
-
 const prodRouter = express();
 
 prodRouter.post('/create', createProd);
