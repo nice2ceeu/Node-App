@@ -39,6 +39,12 @@ app.use(express.json())
 
 app.use(express.static(path.join(__dirname, 'view')))
 
+// Keep the landing page explicit for serverless platforms instead of relying
+// only on express.static's automatic directory-index behavior.
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'view', 'index.html'));
+});
+
 // Static pages do not need a database connection. API requests do.
 app.use(['/user', '/product', '/admin-api'], async (req, res, next) => {
     try {
