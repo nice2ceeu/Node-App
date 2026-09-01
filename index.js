@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const UserRoute = require('./Route/userRoute');
 const ProductRoute = require('./Route/productRoute');
+const AdminRoute = require('./Route/adminRoute');
 require ('dotenv').config()
 
 
@@ -36,6 +37,8 @@ app.use(express.static('view'))
 app.use('/user',UserRoute)
 
 app.use('/product', ProductRoute)
+
+app.use('/admin-api', AdminRoute)
 
 module.exports = app;
 

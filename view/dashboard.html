@@ -8,6 +8,9 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Shop</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@500;600&display=swap" rel="stylesheet">
 		<link
 			rel="stylesheet"
 			href="dashboard.css"
@@ -15,19 +18,21 @@
 	</head>
 	<body>
 		<nav class="navBar">
+			<a class="shopBrand" href="dashboard.html"><img src="images/logo.png" alt=""><span>CITAW</span></a>
 			<button id="userButton">
-				<img src="icons/user.png" />
+				<img src="icons/user.png" alt="Open profile" />
 			</button>
 
-			<button id="back"><img src="icons/back.png" /></button>
+			<button id="back" aria-label="Show all products"><img src="icons/back.png" alt="" /></button>
 			<input
 				type="text"
 				id="itemSearch"
-				placeholder="Search Item"
+				placeholder="Search the market"
+				aria-label="Search products"
 			/>
-			<button id="searchBtn"><img src="icons/search.png" /></button>
+			<button id="searchBtn" aria-label="Search"><img src="icons/search.png" alt="" /></button>
 			<button id="cartButton">
-				<img src="icons/cartPic.png" /><span id="counter">0</span>
+				<img src="icons/cartPic.png" alt="Open cart" /><span id="counter">0</span>
 			</button>
 		</nav>
 
@@ -45,6 +50,7 @@ MAIN PAGE LAYOUT
 
 -->
 		<div class="page_layout">
+			<header class="marketHero"><div><span>Welcome to our shop</span><h1>Find something<br><em>you’ll love.</em></h1></div><p>Browse useful finds and everyday favorites, selected to make shopping simple and enjoyable.</p></header>
 			<div id="container"></div>
 		</div>
 		<!-- PRODUCT  CART -->

@@ -39,8 +39,7 @@ try {
         profile = await response.json();
         
         let imageExist = profile.picture ? profile.picture : "icons/user.png";
-        userButton.innerHTML =`<button id="userButton">
-        <img src=${imageExist}></button>`	
+        userButton.innerHTML = `<img src="${imageExist}" alt="Open profile">`;
         userCard.innerHTML =`<div class="userCard">
         <img src=${imageExist} alt="Pic">
 			<span id="userName">${profile.name}</span><br>
@@ -60,7 +59,7 @@ try {
         //logout and clear infos
 logoutButton.onclick = ()=> {
 
-  sessionStorage.clear
+  sessionStorage.clear()
   window.location.href = "index.html"
 }
         profile.cart.forEach((cartOfUser)=>{

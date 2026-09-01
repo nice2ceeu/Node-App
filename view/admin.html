@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stockroom — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="admin-soft.css">
+</head>
+<body>
+  <aside class="rail">
+    <a class="brand" href="/admin.html" aria-label="Stockroom admin home">
+      <span class="brand-mark">S</span>
+      <span>STOCK<br>ROOM</span>
+    </a>
+    <nav aria-label="Admin navigation">
+      <button class="nav-item active" data-view="overview"><span>01</span> Overview</button>
+      <button class="nav-item" data-view="products"><span>02</span> Products</button>
+      <button class="nav-item" data-view="users"><span>03</span> Users</button>
+    </nav>
+    <a class="store-link" href="/dashboard.html">View storefront <span>↗</span></a>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">OPERATIONS / <span id="sectionLabel">OVERVIEW</span></p>
+        <h1 id="pageTitle">Control room</h1>
+      </div>
+      <div class="top-actions">
+        <button class="key-button" id="keyButton" title="Configure admin key">KEY</button>
+        <span class="status"><i></i> Live inventory</span>
+        <button class="primary" id="newButton">+ New product</button>
+      </div>
+    </header>
+
+    <section class="view active" id="overviewView">
+      <div class="stat-grid">
+        <article class="stat lime"><span>Catalog</span><strong id="productCount">—</strong><small>product lines</small></article>
+        <article class="stat dark"><span>Inventory</span><strong id="unitCount">—</strong><small>units on hand</small></article>
+        <article class="stat paper"><span>Community</span><strong id="userCount">—</strong><small>registered users</small></article>
+        <article class="stat orange"><span>Stock value</span><strong id="inventoryValue">—</strong><small>across all products</small></article>
+      </div>
+      <div class="overview-grid">
+        <article class="panel">
+          <div class="panel-head"><div><p class="eyebrow">QUICK READ</p><h2>Inventory pulse</h2></div><button class="text-button" data-go="products">Manage all ↗</button></div>
+          <div id="inventoryPulse" class="pulse-list"></div>
+        </article>
+        <article class="manifesto">
+          <span>ADMIN NOTE / 001</span>
+          <p>Keep the shelves sharp. Products with fewer than five units are flagged automatically.</p>
+          <div class="rings" aria-hidden="true"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" id="productsView">
+      <div class="toolbar">
+        <label class="search"><span>⌕</span><input id="productSearch" type="search" placeholder="Search the catalog"></label>
+        <span class="record-count" id="productRecordCount"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Product</th><th>Price</th><th>Stock</th><th>Added</th><th><span class="sr-only">Actions</span></th></tr></thead>
+          <tbody id="productRows"></tbody>
+        </table>
+        <div class="empty" id="productEmpty">No products found.</div>
+      </div>
+    </section>
+
+    <section class="view" id="usersView">
+      <div class="toolbar">
+        <label class="search"><span>⌕</span><input id="userSearch" type="search" placeholder="Search users"></label>
+        <span class="record-count" id="userRecordCount"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>User</th><th>Email</th><th>Age</th><th>Joined</th><th><span class="sr-only">Actions</span></th></tr></thead>
+          <tbody id="userRows"></tbody>
+        </table>
+        <div class="empty" id="userEmpty">No users found.</div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="editorDialog">
+    <form method="dialog" id="editorForm">
+      <div class="dialog-head"><div><p class="eyebrow" id="dialogEyebrow">CATALOG ENTRY</p><h2 id="dialogTitle">New product</h2></div><button class="close" value="cancel" aria-label="Close">×</button></div>
+      <div id="formFields" class="form-fields"></div>
+      <p class="form-error" id="formError" role="alert"></p>
+      <div class="dialog-actions"><button class="secondary" value="cancel">Cancel</button><button class="primary" id="saveButton" value="default">Save entry</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="confirmDialog" class="confirm-dialog">
+    <form method="dialog">
+      <span class="danger-mark">!</span><h2>Delete this record?</h2><p id="confirmText">This action cannot be undone.</p>
+      <div class="dialog-actions"><button class="secondary" value="cancel">Keep it</button><button class="danger" id="confirmDelete" value="default">Delete forever</button></div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="admin.js"></script>
+</body>
+</html>

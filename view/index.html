@@ -34,26 +34,32 @@
 			rel="stylesheet"
 			href="login_register.css"
 		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@500;600&display=swap" rel="stylesheet">
 		<title>Welcome to Citaw</title>
 	</head>
 	<body>
 		<header>
-			<img src="images/logo.png" />
+			<img src="images/logo.png" alt="CITAW logo" />
 			<h1>CITAW</h1>
 		</header>
 
 		<section class="login_page_layout">
 			<aside class="carouselContainer">
-				<img src="images/logo.png" />
+				<img src="images/logo.png" alt="Fresh products from CITAW" />
+				<div class="visual-copy"><span>Welcome to CITAW</span><strong>Everyday favorites,<br>thoughtfully picked.</strong></div>
 			</aside>
 			<main class="loginContainer">
 				<div class="loginForm">
+					<p class="form-kicker">Welcome back</p>
 					<h1>Login</h1>
 					<input
                 
-						type="text"
+						type="email"
                         id="email"
-						placeholder="Enter your username"
+						placeholder="Email address"
+						autocomplete="email"
                         required
 					/>
 					<input
@@ -61,11 +67,12 @@
 						type="password"
                         id="password"
 						placeholder="Enter your password"
+						autocomplete="current-password"
                         required
 					/>
 					<button class="loginButton" id="login">Login</button>
 
-					<a href="google.com">Forgot password?</a>
+					<a class="forgot" href="#">Forgot password?</a>
 					<a
 						class="registerButton"
 						href="register.html"

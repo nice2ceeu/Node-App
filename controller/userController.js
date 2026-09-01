@@ -57,14 +57,18 @@ const userLogged = async(req, res)=>{
 //registration
 const createUser = async (req, res) => {
     try {
-      const { email } = req.params;
+      const email = req.body.email?.trim().toLowerCase();
       
       // Check if user already exists
       const exist = await UserShits.findOne({ email: email });
      
       // Create new user
       if(!exist){
-      const user = await UserShits.create(req.body);
+      const user = await UserShits.create({
+        ...req.body,
+        email,
+        user_role: 'user'
+      });
       
       return res.status(200).send("Successfully Registered");
     }

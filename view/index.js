@@ -23,7 +23,9 @@ login.onclick = async()=>{
         if (response.ok) {
             userData = await response.json();
             sessionStorage.setItem('userData', JSON.stringify(userData));
-            window.location.href = `dashboard.html`
+            window.location.href = userData.user_role === 'admin'
+                ? 'admin.html'
+                : 'dashboard.html'
             
 
             

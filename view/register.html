@@ -39,40 +39,48 @@
 			rel="stylesheet"
 			href="login_register.css"
 		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@500;600&display=swap" rel="stylesheet">
 		<title>Register</title>
 	</head>
 	<body>
 		<header>
-			<img src="images/logo.png" />
+			<img src="images/logo.png" alt="CITAW logo" />
 			<h1>CITAW</h1>
 		</header>
 		<section class="register_page_layout">
 			<main class="registerContainer">
 				<div class="registerForm">
+					<p class="form-kicker">Join the market</p>
 					<h1>Register</h1>
 					<input
 						id="fullName"
 						required
 						type="text"
 						placeholder="Full name"
+						autocomplete="name"
 					/>
 					<input
 						id="email"
 						required
 						type="email"
-						placeholder="email"
+						placeholder="Email address"
+						autocomplete="email"
 					/>
 					<input
 						id="password"
 						required
 						type="password"
 						placeholder="Password"
+						autocomplete="new-password"
 					/>
 					<input
 						id="age"
 						required
-						type="text"
-						placeholder="age"
+						type="number"
+						min="1"
+						placeholder="Age"
 					/>
 
 					<button
